@@ -19,6 +19,8 @@ import static org.junit.Assert.*;
  */
 public class EstudiantePresencialTest {
 
+    private EstudiantePresencial instance;
+
     public EstudiantePresencialTest() {
     }
 
@@ -32,6 +34,7 @@ public class EstudiantePresencialTest {
 
     @Before
     public void setUp() {
+        instance = new EstudiantePresencial();
     }
 
     @After
@@ -48,7 +51,6 @@ public class EstudiantePresencialTest {
             IllegalAccessException {
         System.out.println("establecerNumeroCreditos");
         int numero = 0;
-        EstudiantePresencial instance = new EstudiantePresencial();
         instance.establecerNumeroCreditos(numero);
         Field field = instance.getClass().getDeclaredField("numeroCreditos");
         field.setAccessible(true);
@@ -67,7 +69,6 @@ public class EstudiantePresencialTest {
             IllegalAccessException {
         System.out.println("establecerCostoCredito");
         double valor = 0.0;
-        EstudiantePresencial instance = new EstudiantePresencial();
         instance.establecerCostoCredito(valor);
         Field field = instance.getClass().getDeclaredField("costoCredito");
         field.setAccessible(true);
@@ -79,6 +80,7 @@ public class EstudiantePresencialTest {
     /**
      * Test of calcularMatriculaPresencial method, of class
      * EstudiantePresencial.
+     *
      * @throws java.lang.NoSuchFieldException
      */
     @Test
@@ -87,12 +89,11 @@ public class EstudiantePresencialTest {
             NoSuchFieldException,
             IllegalAccessException {
         System.out.println("calcularMatriculaPresencial");
-        EstudiantePresencial instance = new EstudiantePresencial();
         instance.calcularMatriculaPresencial();
         //double valor = 0.0;
         Field field = instance.getClass().getDeclaredField("matriculaPresencial");
         field.setAccessible(true);
-        assertEquals(field.get(instance),0.0);
+        assertEquals(field.get(instance), 0.0);
         // TODO review the generated test code and remove the default call to fail.
         //fail("The test case is a prototype.");
     }
@@ -103,7 +104,6 @@ public class EstudiantePresencialTest {
     @Test
     public void testObtenerNumeroCreditos() {
         System.out.println("obtenerNumeroCreditos");
-        EstudiantePresencial instance = new EstudiantePresencial();
         int expResult = 10;
         instance.establecerNumeroCreditos(expResult);
         int result = instance.obtenerNumeroCreditos();
@@ -118,7 +118,6 @@ public class EstudiantePresencialTest {
     @Test
     public void testObtenerCostoCredito() {
         System.out.println("obtenerCostoCredito");
-        EstudiantePresencial instance = new EstudiantePresencial();
         double expResult = 0.0;
         double result = instance.obtenerCostoCredito();
         assertEquals(expResult, result, 0.0);
@@ -132,7 +131,8 @@ public class EstudiantePresencialTest {
     @Test
     public void testObtenerMatriculaPresencial() {
         System.out.println("obtenerMatriculaPresencial");
-        EstudiantePresencial instance = new EstudiantePresencial();
+        instance.establecerNumeroCreditos(0);
+        instance.establecerCostoCredito(0);
         double expResult = 0.0;
         double result = instance.obtenerMatriculaPresencial();
         assertEquals(expResult, result, 0.0);
